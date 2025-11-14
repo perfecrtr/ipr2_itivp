@@ -37,7 +37,7 @@ if ($resource === 'transactions') {
     switch ($method) {
         case 'GET':
             if ($id) {
-                $query = "SELECT id, order_id, amount, payment_method, status, created_at, updated_at 
+                $query = "SELECT id, order_id, amount, payment_method, status
                           FROM transactions 
                           WHERE id = ?";
                 $stmt = $db->prepare($query);
@@ -51,9 +51,8 @@ if ($resource === 'transactions') {
                     echo json_encode(["message" => "Transaction not found."]);
                 }
             } else {
-                $query = "SELECT id, order_id, amount, payment_method, status, created_at, updated_at 
-                          FROM transactions 
-                          ORDER BY created_at DESC";
+                $query = "SELECT id, order_id, amount, payment_method, status
+                          FROM transactions";
                 $stmt = $db->prepare($query);
                 $stmt->execute();
                 
